@@ -5,8 +5,8 @@ import { Menu, X, Rocket } from "lucide-react";
 const navigation = [
   { title: "Services", href: "/#services" },
   { title: "AI Solutions", href: "/#ai-solutions" },
-  { title: "Industries", href: "/#industries" },
-  { title: "Technology", href: "/#technology" },
+  { title: "Features", href: "/#features" },
+  { title: "Integrations", href: "/#integrations" },
   { title: "Contact", href: "/#contact" },
   { title: "Booking", href: "/booking" },
 ];

@@ -64,12 +64,11 @@ export default function Footer() {
                 <span>info@logiqdriven.com</span>
               </li>
               <li className="flex items-center gap-2 text-gray-400">
-                <Phone className="h-4 w-4" />
-                <span>+44 20 7000 4567</span>
-              </li>
-              <li className="flex items-center gap-2 text-gray-400">
                 <MapPin className="h-4 w-4" />
-                <span>London, UK</span>
+                <span>
+                  Suite 1, 4th Floor, Exchange House, 54/58 Ahtol Street,
+                  Douglas, Isle Of Man, IM 1JD
+                </span>
               </li>
             </ul>
           </div>

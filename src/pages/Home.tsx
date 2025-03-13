@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  ArrowRight,
   Target,
   Users,
   TrendingUp,
@@ -9,20 +8,22 @@ import {
   Notebook as Robot,
   Cpu,
   Network,
-  BarChart as ChartBar,
   LineChart,
   Zap,
   Award,
   Building,
   Globe,
+  MessageSquare,
+  Mail,
+  Database,
+  Cloud,
+  Share2,
+  Settings,
+  PieChart,
+  GitBranch,
+  Sparkles,
 } from "lucide-react";
-import {
-  Service,
-  Testimonial,
-  CaseStudy,
-  TeamMember,
-  AISolution,
-} from "../types";
+import { Service, Feature, Integration, AISolution } from "../types";
 
 const services: Service[] = [
   {
@@ -30,24 +31,32 @@ const services: Service[] = [
     description:
       "Generate high-quality leads using advanced AI algorithms and predictive analytics.",
     icon: "Target",
+    image:
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Market Intelligence",
     description:
       "Deep dive into market trends with AI-driven competitor and consumer analysis.",
     icon: "BarChart",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Social Media Optimization",
     description:
       "Engage your audience with AI-enhanced content and targeting strategies.",
     icon: "Users",
+    image:
+      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Growth Strategy",
     description:
       "Data-driven strategies for sustainable business growth and market expansion.",
     icon: "TrendingUp",
+    image:
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -63,6 +72,8 @@ const aiSolutions: AISolution[] = [
       "Integration capabilities",
     ],
     icon: "Brain",
+    image:
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Automated Marketing Intelligence",
@@ -75,6 +86,8 @@ const aiSolutions: AISolution[] = [
       "Risk assessment",
     ],
     icon: "Robot",
+    image:
+      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Smart Content Optimization",
@@ -87,6 +100,8 @@ const aiSolutions: AISolution[] = [
       "Performance analytics",
     ],
     icon: "Cpu",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Neural Network Analytics",
@@ -99,109 +114,104 @@ const aiSolutions: AISolution[] = [
       "Automated reporting",
     ],
     icon: "Network",
+    image:
+      "https://images.unsplash.com/photo-1488229297570-58520851e868?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
-const caseStudies: CaseStudy[] = [
+const features: Feature[] = [
   {
-    title: "Global Tech Company Lead Generation",
-    client: "TechCorp International",
+    title: "Advanced Analytics Dashboard",
     description:
-      "Implemented AI-driven lead generation strategy resulting in 400% increase in qualified leads.",
-    results: [
-      "400% increase in leads",
-      "65% reduction in CAC",
-      "89% lead quality improvement",
+      "Real-time insights and performance metrics with customizable reporting capabilities.",
+    metrics: [
+      "Real-time data visualization",
+      "Custom report generation",
+      "Predictive analytics",
+      "Performance tracking",
     ],
+    icon: "PieChart",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "E-commerce Revenue Growth",
-    client: "ShopMax Enterprise",
+    title: "Automated Workflow Engine",
     description:
-      "Revolutionized customer acquisition strategy with ML-powered targeting.",
-    results: [
-      "250% revenue growth",
-      "45% increase in ROAS",
-      "3x customer retention",
+      "Streamline your lead generation process with intelligent automation and routing.",
+    metrics: [
+      "Smart lead distribution",
+      "Automated follow-ups",
+      "Process optimization",
+      "Integration capabilities",
     ],
+    icon: "Workflow",
     image:
-      "https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
   },
   {
-    title: "SaaS Market Expansion",
-    client: "CloudSoft Solutions",
+    title: "Multi-Channel Integration",
     description:
-      "Leveraged AI insights for successful market expansion and user acquisition.",
-    results: [
-      "5x market penetration",
-      "300% user base growth",
-      "78% reduction in churn",
+      "Seamlessly connect with your existing tools and platforms for unified lead management.",
+    metrics: [
+      "CRM integration",
+      "Marketing automation",
+      "API connectivity",
+      "Data synchronization",
     ],
+    icon: "GitBranch",
     image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+      "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
-const teamMembers: TeamMember[] = [
+const integrations: Integration[] = [
   {
-    name: "Dr. Sarah Chen",
-    role: "Chief AI Strategist",
-    bio: "Former Google AI researcher with 15+ years experience in machine learning and business intelligence.",
+    name: "CRM Systems",
+    description: "Seamless integration with popular CRM platforms",
+    category: "Sales",
+    icon: "Database",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "Michael Rodriguez",
-    role: "Lead Data Scientist",
-    bio: "Pioneer in predictive analytics with expertise in neural networks and deep learning systems.",
+    name: "Marketing Platforms",
+    description: "Connect with your favorite marketing tools",
+    category: "Marketing",
+    icon: "Mail",
     image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "Emma Thompson",
-    role: "Marketing Technology Director",
-    bio: "Digital marketing veteran specializing in AI-driven campaign optimization and automation.",
+    name: "Communication Tools",
+    description: "Integrate with messaging and email platforms",
+    category: "Communication",
+    icon: "MessageSquare",
     image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1557264337-e8a93017fe92?auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "David Park",
-    role: "Innovation Lead",
-    bio: "Tech entrepreneur with multiple successful exits and deep expertise in emerging technologies.",
+    name: "Analytics Platforms",
+    description: "Connect with advanced analytics tools",
+    category: "Analytics",
+    icon: "LineChart",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-  },
-];
-
-const testimonials: Testimonial[] = [
-  {
-    name: "Sarah Johnson",
-    role: "CEO",
-    company: "TechStart Inc.",
-    content:
-      "LeadGen Pro's AI-powered solutions transformed our lead generation process. We've seen a 300% increase in qualified leads and our sales team couldn't be happier.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "Michael Chen",
-    role: "Marketing Director",
-    company: "Global Solutions",
-    content:
-      "Their strategic approach to AI-driven marketing has helped us reach new markets we never thought possible. The ROI has been exceptional.",
+    name: "Cloud Services",
+    description: "Integration with major cloud providers",
+    category: "Infrastructure",
+    icon: "Cloud",
     image:
-      "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
   },
   {
-    name: "Emily Rodriguez",
-    role: "Growth Manager",
-    company: "InnovateTech",
-    content:
-      "The predictive analytics and AI tools provided by LeadGen Pro have revolutionized our approach to customer acquisition. Simply outstanding.",
+    name: "Collaboration Tools",
+    description: "Connect with team collaboration platforms",
+    category: "Collaboration",
+    icon: "Share2",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
@@ -226,7 +236,7 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -242,6 +252,28 @@ export default function Home() {
             className="w-full h-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-purple-900/50 to-gray-900 mix-blend-multiply" />
+        </div>
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80"
+              alt="Floating Tech 1"
+              className="absolute top-1/4 -left-20 w-64 h-64 object-cover rounded-full opacity-20 float"
+              style={{ animationDelay: "0s" }}
+            />
+            <img
+              src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52?auto=format&fit=crop&w=800&q=80"
+              alt="Floating Tech 2"
+              className="absolute top-1/3 right-10 w-48 h-48 object-cover rounded-full opacity-20 float"
+              style={{ animationDelay: "1s" }}
+            />
+            <img
+              src="https://images.unsplash.com/photo-1638815401319-702d3b5dfd2a?auto=format&fit=crop&w=800&q=80"
+              alt="Floating Tech 3"
+              className="absolute bottom-1/4 -right-20 w-72 h-72 object-cover rounded-full opacity-20 float"
+              style={{ animationDelay: "2s" }}
+            />
+          </div>
         </div>
         <div className="relative max-w-7xl mx-auto px-6 py-24 text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 reveal">
@@ -310,18 +342,28 @@ export default function Home() {
             {services.map((service, index) => (
               <div
                 key={service.title}
-                className="group bg-gray-800/50 p-8 rounded-2xl backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300 transform hover:-translate-y-1 reveal"
+                className="group bg-gray-800/50 p-8 rounded-2xl backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300 transform hover:-translate-y-1 reveal overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-purple-500 mb-6">
-                  {service.icon === "Target" && <Target className="h-8 w-8" />}
-                  {service.icon === "BarChart" && (
-                    <BarChart className="h-8 w-8" />
-                  )}
-                  {service.icon === "Users" && <Users className="h-8 w-8" />}
-                  {service.icon === "TrendingUp" && (
-                    <TrendingUp className="h-8 w-8" />
-                  )}
+                <div className="relative h-48 mb-6 rounded-xl overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-purple-900/30" />
+                  <div className="absolute top-4 left-4 text-purple-500">
+                    {service.icon === "Target" && (
+                      <Target className="h-8 w-8" />
+                    )}
+                    {service.icon === "BarChart" && (
+                      <BarChart className="h-8 w-8" />
+                    )}
+                    {service.icon === "Users" && <Users className="h-8 w-8" />}
+                    {service.icon === "TrendingUp" && (
+                      <TrendingUp className="h-8 w-8" />
+                    )}
+                  </div>
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-4">
                   {service.title}
@@ -336,9 +378,21 @@ export default function Home() {
       {/* AI Solutions Section */}
       <section
         id="ai-solutions"
-        className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900"
+        className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900 relative"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="absolute inset-0">
+          <div className="grid grid-cols-2 gap-4 opacity-5">
+            {aiSolutions.map((solution, index) => (
+              <img
+                key={index}
+                src={solution.image}
+                alt={solution.title}
+                className="w-full h-96 object-cover"
+              />
+            ))}
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto px-6 relative">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               AI-Powered Solutions
@@ -352,40 +406,52 @@ export default function Home() {
             {aiSolutions.map((solution, index) => (
               <div
                 key={solution.title}
-                className="bg-gray-800/30 p-8 rounded-2xl backdrop-blur-sm border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 reveal"
+                className="bg-gray-800/30 rounded-2xl backdrop-blur-sm border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 reveal overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="flex items-start gap-6">
-                  <div className="p-4 bg-purple-500/10 rounded-xl">
-                    {solution.icon === "Brain" && (
-                      <Brain className="h-8 w-8 text-purple-400" />
-                    )}
-                    {solution.icon === "Robot" && (
-                      <Robot className="h-8 w-8 text-purple-400" />
-                    )}
-                    {solution.icon === "Cpu" && (
-                      <Cpu className="h-8 w-8 text-purple-400" />
-                    )}
-                    {solution.icon === "Network" && (
-                      <Network className="h-8 w-8 text-purple-400" />
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white mb-2">
-                      {solution.title}
-                    </h3>
-                    <p className="text-gray-400 mb-4">{solution.description}</p>
-                    <ul className="grid grid-cols-2 gap-2">
-                      {solution.features.map((feature, featureIndex) => (
-                        <li
-                          key={featureIndex}
-                          className="flex items-center text-sm text-gray-400"
-                        >
-                          <Zap className="h-4 w-4 text-purple-400 mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                <div className="relative h-64">
+                  <img
+                    src={solution.image}
+                    alt={solution.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" />
+                </div>
+                <div className="p-8">
+                  <div className="flex items-start gap-6">
+                    <div className="p-4 bg-purple-500/10 rounded-xl">
+                      {solution.icon === "Brain" && (
+                        <Brain className="h-8 w-8 text-purple-400" />
+                      )}
+                      {solution.icon === "Robot" && (
+                        <Robot className="h-8 w-8 text-purple-400" />
+                      )}
+                      {solution.icon === "Cpu" && (
+                        <Cpu className="h-8 w-8 text-purple-400" />
+                      )}
+                      {solution.icon === "Network" && (
+                        <Network className="h-8 w-8 text-purple-400" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        {solution.title}
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        {solution.description}
+                      </p>
+                      <ul className="grid grid-cols-2 gap-2">
+                        {solution.features.map((feature, featureIndex) => (
+                          <li
+                            key={featureIndex}
+                            className="flex items-center text-sm text-gray-400"
+                          >
+                            <Zap className="h-4 w-4 text-purple-400 mr-2" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -394,46 +460,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industries Section */}
-      <section id="industries" className="py-24 bg-gray-900">
+      {/* Features Section */}
+      <section id="features" className="py-24 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Success Stories
+              Platform Features
             </h2>
             <p className="text-xl text-gray-400">
-              Real results from our AI-driven strategies
+              Powerful tools designed for modern business growth
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
+            {features.map((feature, index) => (
               <div
-                key={study.title}
-                className="group bg-gray-800/30 rounded-2xl overflow-hidden reveal"
+                key={feature.title}
+                className="bg-gray-800/30 rounded-2xl overflow-hidden reveal"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-48">
                   <img
-                    src={study.image}
-                    alt={study.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-purple-900/50 mix-blend-multiply" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" />
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    {study.title}
+                <div className="p-8">
+                  <div className="inline-block p-4 bg-purple-500/10 rounded-xl mb-6">
+                    {feature.icon === "PieChart" && (
+                      <PieChart className="h-8 w-8 text-purple-400" />
+                    )}
+                    {feature.icon === "Workflow" && (
+                      <Settings className="h-8 w-8 text-purple-400" />
+                    )}
+                    {feature.icon === "GitBranch" && (
+                      <GitBranch className="h-8 w-8 text-purple-400" />
+                    )}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-4">
+                    {feature.title}
                   </h3>
-                  <p className="text-purple-400 mb-4">{study.client}</p>
-                  <p className="text-gray-400 mb-4">{study.description}</p>
-                  <ul className="space-y-2">
-                    {study.results.map((result, resultIndex) => (
+                  <p className="text-gray-400 mb-6">{feature.description}</p>
+                  <ul className="space-y-3">
+                    {feature.metrics.map((metric, metricIndex) => (
                       <li
-                        key={resultIndex}
+                        key={metricIndex}
                         className="flex items-center text-gray-400"
                       >
-                        <ChartBar className="h-5 w-5 text-purple-400 mr-2" />
-                        {result}
+                        <Sparkles className="h-5 w-5 text-purple-400 mr-3" />
+                        {metric}
                       </li>
                     ))}
                   </ul>
@@ -444,80 +520,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Technology Section */}
-      <section
-        id="technology"
-        className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900"
-      >
+      {/* Integrations Section */}
+      <section id="integrations" className="py-24 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Meet Our AI Experts
+              Seamless Integrations
             </h2>
             <p className="text-xl text-gray-400">
-              Industry leaders in AI and marketing technology
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div
-                key={member.name}
-                className="group bg-gray-800/30 rounded-2xl p-6 text-center reveal"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="relative w-32 h-32 mx-auto mb-6">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover rounded-full transform group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-b from-purple-500/20 to-purple-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-purple-400 mb-4">{member.role}</p>
-                <p className="text-gray-400">{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-24 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Client Success Stories
-            </h2>
-            <p className="text-xl text-gray-400">
-              Hear from businesses transformed by our AI solutions
+              Connect with your favorite tools and platforms
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {integrations.map((integration, index) => (
               <div
-                key={testimonial.name}
-                className="bg-gray-800/30 p-8 rounded-2xl backdrop-blur-sm reveal"
+                key={integration.name}
+                className="group bg-gray-800/30 rounded-2xl overflow-hidden reveal"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="flex items-center gap-4 mb-6">
+                <div className="relative h-48">
                   <img
-                    className="h-16 w-16 rounded-full object-cover"
-                    src={testimonial.image}
-                    alt={testimonial.name}
+                    src={integration.image}
+                    alt={integration.name}
+                    className="w-full h-full object-cover"
                   />
-                  <div>
-                    <div className="font-semibold text-white">
-                      {testimonial.name}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" />
+                </div>
+                <div className="p-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="p-4 bg-purple-500/10 rounded-xl">
+                      {integration.icon === "Database" && (
+                        <Database className="h-6 w-6 text-purple-400" />
+                      )}
+                      {integration.icon === "Mail" && (
+                        <Mail className="h-6 w-6 text-purple-400" />
+                      )}
+                      {integration.icon === "MessageSquare" && (
+                        <MessageSquare className="h-6 w-6 text-purple-400" />
+                      )}
+                      {integration.icon === "LineChart" && (
+                        <LineChart className="h-6 w-6 text-purple-400" />
+                      )}
+                      {integration.icon === "Cloud" && (
+                        <Cloud className="h-6 w-6 text-purple-400" />
+                      )}
+                      {integration.icon === "Share2" && (
+                        <Share2 className="h-6 w-6 text-purple-400" />
+                      )}
                     </div>
-                    <div className="text-purple-400">
-                      {testimonial.role} at {testimonial.company}
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">
+                        {integration.name}
+                      </h3>
+                      <p className="text-purple-400">{integration.category}</p>
                     </div>
                   </div>
+                  <p className="text-gray-400">{integration.description}</p>
                 </div>
-                <p className="text-gray-400">{testimonial.content}</p>
               </div>
             ))}
           </div>
@@ -527,9 +586,17 @@ export default function Home() {
       {/* Contact Section */}
       <section
         id="contact"
-        className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900"
+        className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900 relative"
       >
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1557264337-e8a93017fe92?auto=format&fit=crop&w=1920&q=80"
+            alt="Abstract Technology"
+            className="w-full h-full object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900 opacity-90" />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 text-center relative">
           <div className="max-w-3xl mx-auto reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Transform Your Business?
@@ -546,7 +613,7 @@ export default function Home() {
                 Schedule a Consultation
               </a>
               <a
-                href="mailto:contact@leadgenpro.com"
+                href="mailto:info@logiqdriven.com"
                 className="rounded-full px-8 py-4 text-lg font-semibold text-white border-2 border-purple-500 hover:bg-purple-500/20 transition-all duration-300"
               >
                 Contact Us
@@ -566,6 +633,16 @@ export default function Home() {
         .reveal.active {
           opacity: 1;
           transform: translateY(0);
+        }
+
+        @keyframes float {
+          0% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+          100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .float {
+          animation: float 6s ease-in-out infinite;
         }
       `}</style>
     </div>

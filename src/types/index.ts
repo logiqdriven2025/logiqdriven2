@@ -7,28 +7,22 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
-}
-
-export interface Testimonial {
-  name: string;
-  role: string;
-  company: string;
-  content: string;
   image: string;
 }
 
-export interface CaseStudy {
+export interface Feature {
   title: string;
-  client: string;
   description: string;
-  results: string[];
+  metrics: string[];
+  icon: string;
   image: string;
 }
 
-export interface TeamMember {
+export interface Integration {
   name: string;
-  role: string;
-  bio: string;
+  description: string;
+  category: string;
+  icon: string;
   image: string;
 }
 
@@ -37,4 +31,5 @@ export interface AISolution {
   description: string;
   features: string[];
   icon: string;
+  image: string;
 }
