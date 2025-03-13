@@ -394,8 +394,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Case Studies Section */}
-      <section id="case-studies" className="py-24 bg-gray-900">
+      {/* Industries Section */}
+      <section id="industries" className="py-24 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -444,9 +444,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Technology Section */}
       <section
-        id="team"
+        id="technology"
         className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900"
       >
         <div className="max-w-7xl mx-auto px-6">
