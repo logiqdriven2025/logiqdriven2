@@ -64,7 +64,7 @@ export default function Footer() {
                 <span>info@logiqdriven.com</span>
               </li>
               <li className="flex items-center gap-2 text-gray-400">
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-4 w-4 min-w-4" />
                 <span>
                   Suite 1, 4th Floor, Exchange House, 54/58 Ahtol Street,
                   Douglas, Isle Of Man, IM 1JD
