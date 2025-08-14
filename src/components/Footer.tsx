@@ -30,14 +30,14 @@ export default function Footer() {
                   Home
                 </HashLink>
               </li>
-              <li>
+              {/* <li>
                 <HashLink
                   to="/booking"
                   className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
                 >
                   Book Consultation
                 </HashLink>
-              </li>
+              </li> */}
               <li>
                 <HashLink
                   to="/privacy"
