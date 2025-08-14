@@ -14,8 +14,7 @@ export default function Footer() {
               <span className="text-white font-bold text-xl">Logiq Driven</span>
             </HashLink>
             <p className="text-gray-400 text-sm">
-              Transforming businesses through innovative lead generation and
-              digital marketing solutions.
+              Connecting businesses with trusted payment providers worldwide.
             </p>
           </div>
 
