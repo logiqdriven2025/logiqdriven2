@@ -22,7 +22,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        <CookieConsent
+        {/* <CookieConsent
           location="bottom"
           buttonText="Accept"
           declineButtonText="Decline"
@@ -50,7 +50,7 @@ function App() {
             Privacy Policy
           </a>{" "}
           for more details.
-        </CookieConsent>
+        </CookieConsent> */}
       </div>
     </Router>
   );

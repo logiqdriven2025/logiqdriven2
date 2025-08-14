@@ -3,12 +3,11 @@ import { HashLink } from "react-router-hash-link";
 import { Menu, X, Rocket } from "lucide-react";
 
 const navigation = [
-  { title: "Services", href: "/#services" },
-  { title: "AI Solutions", href: "/#ai-solutions" },
-  { title: "Features", href: "/#features" },
-  { title: "Integrations", href: "/#integrations" },
+  { title: "About Us", href: "/#about-us" },
+  { title: "How It Works", href: "/#how-it-works" },
+  { title: "Why Choose Us", href: "/#why-choose-us" },
+  { title: "What You Gain", href: "/#what-you-gain" },
   { title: "Contact", href: "/#contact" },
-  { title: "Booking", href: "/booking" },
 ];
 
 export default function Header() {
@@ -59,10 +58,10 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <HashLink
-            to="/booking"
+            to="/#contact"
             className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 hover:shadow-purple-500/25"
           >
-            Book a Consultation
+            Get Matched Today
           </HashLink>
         </div>
       </nav>

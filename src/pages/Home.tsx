@@ -1,228 +1,87 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
-  Target,
-  Users,
-  TrendingUp,
-  BarChart,
-  Brain,
-  Notebook as Robot,
-  Cpu,
-  Network,
-  LineChart,
-  Zap,
-  Award,
-  Building,
-  Globe,
-  MessageSquare,
-  Mail,
-  Database,
-  Cloud,
-  Share2,
-  Settings,
-  PieChart,
-  GitBranch,
-  Sparkles,
+  CheckCircle,
 } from "lucide-react";
-import { Service, Feature, Integration, AISolution } from "../types";
 
-const services: Service[] = [
+const steps = [
   {
-    title: "AI-Powered Lead Generation",
-    description:
-      "Generate high-quality leads using advanced AI algorithms and predictive analytics.",
-    icon: "Target",
-    image:
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80",
+    title: "Discovery & Needs Analysis",
+    description: "We start by understanding your business model, payment flows, technical setup, and operational priorities. This ensures every recommendation is tailored specifically to you."
   },
   {
-    title: "Market Intelligence",
-    description:
-      "Deep dive into market trends with AI-driven competitor and consumer analysis.",
-    icon: "BarChart",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    title: "Expert Introductions",
+    description: "We match you with vetted providers that align with your needs for compliance, performance, and commercial terms. We personally introduce you to the right contact — so you skip the queue."
   },
   {
-    title: "Social Media Optimization",
-    description:
-      "Engage your audience with AI-enhanced content and targeting strategies.",
-    icon: "Users",
-    image:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+    title: "Guided Onboarding",
+    description: "We assist with every step of the onboarding process: Provider application forms, Compliance and due diligence, Technical integration support."
   },
   {
-    title: "Growth Strategy",
-    description:
-      "Data-driven strategies for sustainable business growth and market expansion.",
-    icon: "TrendingUp",
-    image:
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+    title: "Optimization & Go-Live",
+    description: "We help secure favorable terms, confirm integration success, and ensure you're ready to accept payments."
   },
+  {
+    title: "Ongoing Relationship Support",
+    description: "Even after you go live, we're here for provider questions, scaling needs, and backup provider sourcing."
+  }
 ];
 
-const aiSolutions: AISolution[] = [
-  {
-    title: "Predictive Lead Scoring",
-    description:
-      "AI-powered system that identifies and ranks potential leads based on likelihood to convert.",
-    features: [
-      "Machine learning algorithms",
-      "Behavioral analysis",
-      "Real-time scoring",
-      "Integration capabilities",
-    ],
-    icon: "Brain",
-    image:
-      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Automated Marketing Intelligence",
-    description:
-      "Real-time market analysis and competitor tracking using advanced AI.",
-    features: [
-      "Trend prediction",
-      "Competitor monitoring",
-      "Market opportunity detection",
-      "Risk assessment",
-    ],
-    icon: "Robot",
-    image:
-      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Smart Content Optimization",
-    description:
-      "AI-driven content creation and optimization for maximum engagement.",
-    features: [
-      "SEO automation",
-      "Content personalization",
-      "A/B testing",
-      "Performance analytics",
-    ],
-    icon: "Cpu",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Neural Network Analytics",
-    description:
-      "Deep learning solutions for complex market analysis and prediction.",
-    features: [
-      "Pattern recognition",
-      "Predictive modeling",
-      "Data visualization",
-      "Automated reporting",
-    ],
-    icon: "Network",
-    image:
-      "https://images.unsplash.com/photo-1488229297570-58520851e868?auto=format&fit=crop&w=800&q=80",
-  },
+const benefits = [
+  "Save Time – We do the research, outreach, and matching for you.",
+  "Independent & Neutral – We're not tied to any single provider.",
+  "Proven Network – Every provider is pre-vetted for reliability and compliance.",
+  "Industry Expertise – We understand the payment landscape in depth.",
+  "End-to-End Guidance – From discovery to onboarding to post-launch, we're with you."
 ];
 
-const features: Feature[] = [
-  {
-    title: "Advanced Analytics Dashboard",
-    description:
-      "Real-time insights and performance metrics with customizable reporting capabilities.",
-    metrics: [
-      "Real-time data visualization",
-      "Custom report generation",
-      "Predictive analytics",
-      "Performance tracking",
-    ],
-    icon: "PieChart",
-    image:
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Automated Workflow Engine",
-    description:
-      "Streamline your lead generation process with intelligent automation and routing.",
-    metrics: [
-      "Smart lead distribution",
-      "Automated follow-ups",
-      "Process optimization",
-      "Integration capabilities",
-    ],
-    icon: "Workflow",
-    image:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    title: "Multi-Channel Integration",
-    description:
-      "Seamlessly connect with your existing tools and platforms for unified lead management.",
-    metrics: [
-      "CRM integration",
-      "Marketing automation",
-      "API connectivity",
-      "Data synchronization",
-    ],
-    icon: "GitBranch",
-    image:
-      "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?auto=format&fit=crop&w=800&q=80",
-  },
+const gains = [
+  "Faster provider approvals",
+  "Better commercial terms and fee structures",
+  "Hassle-free onboarding with expert guidance",
+  "Confidence your provider is compliant and stable",
+  "A partner who's invested in your payment success"
 ];
 
-const integrations: Integration[] = [
-  {
-    name: "CRM Systems",
-    description: "Seamless integration with popular CRM platforms",
-    category: "Sales",
-    icon: "Database",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Marketing Platforms",
-    description: "Connect with your favorite marketing tools",
-    category: "Marketing",
-    icon: "Mail",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Communication Tools",
-    description: "Integrate with messaging and email platforms",
-    category: "Communication",
-    icon: "MessageSquare",
-    image:
-      "https://images.unsplash.com/photo-1557264337-e8a93017fe92?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Analytics Platforms",
-    description: "Connect with advanced analytics tools",
-    category: "Analytics",
-    icon: "LineChart",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Cloud Services",
-    description: "Integration with major cloud providers",
-    category: "Infrastructure",
-    icon: "Cloud",
-    image:
-      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80",
-  },
-  {
-    name: "Collaboration Tools",
-    description: "Connect with team collaboration platforms",
-    category: "Collaboration",
-    icon: "Share2",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
-  },
-];
-
-const stats = [
-  { number: "500+", label: "Clients Served", icon: Building },
-  { number: "10M+", label: "Leads Generated", icon: Users },
-  { number: "98%", label: "Client Satisfaction", icon: Award },
-  { number: "150+", label: "Countries Reached", icon: Globe },
-];
+// Stats can be used in future updates if needed
+// const stats = [
+//   { number: "500+", label: "Clients Served", icon: Building },
+//   { number: "10M+", label: "Leads Generated", icon: Users },
+//   { number: "98%", label: "Client Satisfaction", icon: Award },
+//   { number: "150+", label: "Countries Reached", icon: Globe },
+// ];
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    website: "",
+    volume: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+    // Add your form submission logic here
+    alert("Thank you for your submission! We'll contact you within 24 hours.");
+    setFormData({
+      name: "",
+      email: "",
+      company: "",
+      website: "",
+      volume: "",
+      message: "",
+    });
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const reveals = document.querySelectorAll(".reveal");
@@ -248,7 +107,7 @@ export default function Home() {
         <div className="absolute inset-0 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-            alt="AI Technology"
+            alt="Payment Technology"
             className="w-full h-full object-cover opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-purple-900/50 to-gray-900 mix-blend-multiply" />
@@ -277,305 +136,126 @@ export default function Home() {
         </div>
         <div className="relative max-w-7xl mx-auto px-6 py-24 text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 reveal">
-            Transform Your Business with
+            Seamless Payments Start with
             <span className="block mt-2 bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent">
-              AI-Powered Lead Generation
+              the Right Partner
             </span>
           </h1>
           <p className="mt-6 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto reveal">
-            Harness the power of artificial intelligence to revolutionize your
-            lead generation and marketing strategies.
+            The payment industry can be complicated — but finding your ideal provider shouldn't be.
+            We connect you with vetted, trusted payment service providers and guide you from first contact to go-live.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 reveal">
             <a
               href="#contact"
               className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 transform hover:scale-105"
             >
-              Get Started
-            </a>
-            <a
-              href="#ai-solutions"
-              className="rounded-full px-8 py-4 text-lg font-semibold text-white border-2 border-purple-500 hover:bg-purple-500/20 transition-all duration-300"
-            >
-              Explore AI Solutions
+              Get Matched Today
             </a>
           </div>
+          <p className="mt-6 text-gray-300 max-w-3xl mx-auto reveal">
+            Free initial consultation — no obligation, no upfront cost.
+          </p>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center reveal"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="inline-block p-4 bg-purple-500/10 rounded-2xl mb-4">
-                  <stat.icon className="h-8 w-8 text-purple-400" />
-                </div>
-                <div className="text-4xl font-bold text-white mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-400">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-24 bg-gray-900">
+      {/* About Us Section */}
+      <section id="about-us" className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Our Services
+              Who We Are
             </h2>
+            <p className="text-xl text-gray-400 mb-6">
+            We are payment industry specialists who understand how challenging it can be to find a reliable payment provider that fits your business.
+Instead of wasting months on cold outreach, trial applications, and unpredictable results, we give you direct access to our curated network of trusted providers.
+            </p>
             <p className="text-xl text-gray-400">
-              Comprehensive AI-driven solutions to accelerate your business
-              growth
+            Our team works independently — meaning we are not tied to any one provider.
+Our only priority is ensuring your payment setup is reliable, compliant, and commercially optimized.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-24 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16 reveal">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              How It Works
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-8">
+            {steps.map((step, index) => (
               <div
-                key={service.title}
-                className="group bg-gray-800/50 p-8 rounded-2xl backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300 transform hover:-translate-y-1 reveal overflow-hidden"
+                key={step.title}
+                className="group bg-gray-800/50 p-8 rounded-2xl backdrop-blur-sm hover:bg-gray-800/70 transition-all duration-300 reveal overflow-hidden"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="relative h-48 mb-6 rounded-xl overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-purple-900/30" />
-                  <div className="absolute top-4 left-4 text-purple-500">
-                    {service.icon === "Target" && (
-                      <Target className="h-8 w-8" />
-                    )}
-                    {service.icon === "BarChart" && (
-                      <BarChart className="h-8 w-8" />
-                    )}
-                    {service.icon === "Users" && <Users className="h-8 w-8" />}
-                    {service.icon === "TrendingUp" && (
-                      <TrendingUp className="h-8 w-8" />
-                    )}
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xl">
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      Step {index + 1}: {step.title}
+                    </h3>
+                    <p className="text-gray-400">{step.description}</p>
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-400">{service.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* AI Solutions Section */}
-      <section
-        id="ai-solutions"
-        className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900 relative"
-      >
+      {/* Why Choose Us Section */}
+      <section id="why-choose-us" className="py-24 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900 relative">
         <div className="absolute inset-0">
-          <div className="grid grid-cols-2 gap-4 opacity-5">
-            {aiSolutions.map((solution, index) => (
-              <img
-                key={index}
-                src={solution.image}
-                alt={solution.title}
-                className="w-full h-96 object-cover"
-              />
-            ))}
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900 opacity-90" />
         </div>
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              AI-Powered Solutions
+              Why Choose Us
             </h2>
-            <p className="text-xl text-gray-400">
-              Cutting-edge artificial intelligence technology for modern
-              businesses
-            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {aiSolutions.map((solution, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8">
+            {benefits.map((benefit, index) => (
               <div
-                key={solution.title}
-                className="bg-gray-800/30 rounded-2xl backdrop-blur-sm border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 reveal overflow-hidden"
+                key={index}
+                className="flex items-start gap-4 reveal"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="relative h-64">
-                  <img
-                    src={solution.image}
-                    alt={solution.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" />
+                <div className="flex-shrink-0">
+                  <CheckCircle className="h-6 w-6 text-purple-400" />
                 </div>
-                <div className="p-8">
-                  <div className="flex items-start gap-6">
-                    <div className="p-4 bg-purple-500/10 rounded-xl">
-                      {solution.icon === "Brain" && (
-                        <Brain className="h-8 w-8 text-purple-400" />
-                      )}
-                      {solution.icon === "Robot" && (
-                        <Robot className="h-8 w-8 text-purple-400" />
-                      )}
-                      {solution.icon === "Cpu" && (
-                        <Cpu className="h-8 w-8 text-purple-400" />
-                      )}
-                      {solution.icon === "Network" && (
-                        <Network className="h-8 w-8 text-purple-400" />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-white mb-2">
-                        {solution.title}
-                      </h3>
-                      <p className="text-gray-400 mb-4">
-                        {solution.description}
-                      </p>
-                      <ul className="grid grid-cols-2 gap-2">
-                        {solution.features.map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className="flex items-center text-sm text-gray-400"
-                          >
-                            <Zap className="h-4 w-4 text-purple-400 mr-2" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-xl text-gray-300">{benefit}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section id="features" className="py-24 bg-gray-900">
+      {/* What You Gain Section */}
+      <section id="what-you-gain" className="py-24 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Platform Features
+              What You Gain
             </h2>
-            <p className="text-xl text-gray-400">
-              Powerful tools designed for modern business growth
-            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {gains.map((gain, index) => (
               <div
-                key={feature.title}
-                className="bg-gray-800/30 rounded-2xl overflow-hidden reveal"
+                key={index}
+                className="bg-gray-800/30 p-6 rounded-xl backdrop-blur-sm reveal"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="relative h-48">
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" />
-                </div>
-                <div className="p-8">
-                  <div className="inline-block p-4 bg-purple-500/10 rounded-xl mb-6">
-                    {feature.icon === "PieChart" && (
-                      <PieChart className="h-8 w-8 text-purple-400" />
-                    )}
-                    {feature.icon === "Workflow" && (
-                      <Settings className="h-8 w-8 text-purple-400" />
-                    )}
-                    {feature.icon === "GitBranch" && (
-                      <GitBranch className="h-8 w-8 text-purple-400" />
-                    )}
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 mb-6">{feature.description}</p>
-                  <ul className="space-y-3">
-                    {feature.metrics.map((metric, metricIndex) => (
-                      <li
-                        key={metricIndex}
-                        className="flex items-center text-gray-400"
-                      >
-                        <Sparkles className="h-5 w-5 text-purple-400 mr-3" />
-                        {metric}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Integrations Section */}
-      <section id="integrations" className="py-24 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 reveal">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Seamless Integrations
-            </h2>
-            <p className="text-xl text-gray-400">
-              Connect with your favorite tools and platforms
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {integrations.map((integration, index) => (
-              <div
-                key={integration.name}
-                className="group bg-gray-800/30 rounded-2xl overflow-hidden reveal"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="relative h-48">
-                  <img
-                    src={integration.image}
-                    alt={integration.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900" />
-                </div>
-                <div className="p-8">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="p-4 bg-purple-500/10 rounded-xl">
-                      {integration.icon === "Database" && (
-                        <Database className="h-6 w-6 text-purple-400" />
-                      )}
-                      {integration.icon === "Mail" && (
-                        <Mail className="h-6 w-6 text-purple-400" />
-                      )}
-                      {integration.icon === "MessageSquare" && (
-                        <MessageSquare className="h-6 w-6 text-purple-400" />
-                      )}
-                      {integration.icon === "LineChart" && (
-                        <LineChart className="h-6 w-6 text-purple-400" />
-                      )}
-                      {integration.icon === "Cloud" && (
-                        <Cloud className="h-6 w-6 text-purple-400" />
-                      )}
-                      {integration.icon === "Share2" && (
-                        <Share2 className="h-6 w-6 text-purple-400" />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-white">
-                        {integration.name}
-                      </h3>
-                      <p className="text-purple-400">{integration.category}</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-400">{integration.description}</p>
+                <div className="flex items-center gap-4">
+                  <CheckCircle className="h-8 w-8 text-green-500" />
+                  <p className="text-lg text-white">{gain}</p>
                 </div>
               </div>
             ))}
@@ -596,28 +276,133 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-purple-900/20 to-gray-900 opacity-90" />
         </div>
-        <div className="max-w-7xl mx-auto px-6 text-center relative">
-          <div className="max-w-3xl mx-auto reveal">
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Business?
+                Let's Find Your Ideal Payment Provider — Starting Today
             </h2>
-            <p className="text-xl text-gray-400 mb-8">
-              Let's discuss how our AI-powered solutions can help you achieve
-              your growth goals.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
-                href="/booking"
-                className="rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 transform hover:scale-105"
-              >
-                Schedule a Consultation
-              </a>
-              <a
-                href="mailto:info@logiqdriven.com"
-                className="rounded-full px-8 py-4 text-lg font-semibold text-white border-2 border-purple-500 hover:bg-purple-500/20 transition-all duration-300"
-              >
-                Contact Us
-              </a>
+              <p className="text-xl text-gray-300 mb-8">
+                Your payment setup is the foundation of your business revenue. Choosing the wrong provider costs you time, money, and opportunities.
+                Let us make sure you get it right from the start.
+              </p>
+            </div>
+            <div className="bg-gray-800/30 p-8 rounded-2xl backdrop-blur-sm reveal">
+              <h3 className="text-2xl font-bold text-white mb-6">
+                Get Your Free Provider Match
+              </h3>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="company"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    Company Name
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="website"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    Website
+                  </label>
+                  <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="volume"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    Monthly Processing Volume
+                  </label>
+                  <input
+                    type="text"
+                    id="volume"
+                    name="volume"
+                    value={formData.volume}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-300 mb-2"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-3 px-6 text-center text-white font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 transform hover:scale-[1.02]"
+                >
+                  Start My Matchmaking Process
+                </button>
+                <p className="text-sm text-gray-400 text-center">
+                  We'll contact you within 24 hours with your first assessment.
+                </p>
+              </form>
             </div>
           </div>
         </div>

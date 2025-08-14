@@ -1,6 +1,7 @@
 import React from "react";
 import { HashLink } from "react-router-hash-link";
 import { Rocket, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -75,10 +76,9 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800">
-          <p className="text-center text-xs leading-5 text-gray-400">
-            &copy; {new Date().getFullYear()} Logiq Driven Marketing Agency. All
-            rights reserved.
-          </p>
+          <span className="text-center text-xs leading-5 text-white">
+            &copy; {new Date().getFullYear()} Logiq Driven — All Rights Reserved <Link to="/privacy" className="text-purple-400 hover:text-purple-300">Privacy Policy</Link> | <Link to="/terms" className="text-purple-400 hover:text-purple-300">Terms of Service</Link>
+          </span>
         </div>
       </div>
     </footer>
