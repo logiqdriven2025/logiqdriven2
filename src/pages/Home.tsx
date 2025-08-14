@@ -81,10 +81,10 @@ export default function Home() {
 
     try {
       await emailjs.sendForm(
-        "service_owf7nen",
-        "template_791nfis",
+        "service_w0bqnue",
+        "template_uurrjmh",
         formRef.current,
-        "95XYeHWL6YgXKx7c8"
+        "ue-Qs9JzZWRmRPJdo"
       );
 
       setSubmitStatus("success");
