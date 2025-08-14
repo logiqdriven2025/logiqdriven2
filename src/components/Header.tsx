@@ -3,7 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import { Menu, X, Rocket } from "lucide-react";
 
 const navigation = [
-  { title: "About Us", href: "/#about-us" },
+  { title: "Who We Are", href: "/#who-we-are" },
   { title: "How It Works", href: "/#how-it-works" },
   { title: "Why Choose Us", href: "/#why-choose-us" },
   { title: "What You Gain", href: "/#what-you-gain" },

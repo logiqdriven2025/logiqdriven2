@@ -182,8 +182,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Us Section */}
-      <section id="about-us" className="py-20 bg-gray-900">
+      {/* Who We Are Section */}
+      <section id="who-we-are" className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 reveal">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
