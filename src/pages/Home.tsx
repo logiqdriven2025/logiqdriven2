@@ -86,6 +86,7 @@ export default function Home() {
         formRef.current,
         "95XYeHWL6YgXKx7c8"
       );
+
       setSubmitStatus("success");
       formRef.current.reset();
       setFormData({
