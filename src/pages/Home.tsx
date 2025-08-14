@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   CheckCircle,
 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const steps = [
   {
@@ -51,6 +52,10 @@ const gains = [
 // ];
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const formRef = useRef<HTMLFormElement>(null);
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -67,19 +72,36 @@ export default function Home() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
-    // Add your form submission logic here
-    alert("Thank you for your submission! We'll contact you within 24 hours.");
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      website: "",
-      volume: "",
-      message: "",
-    });
+    if (!formRef.current) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      await emailjs.sendForm(
+        "service_owf7nen",
+        "template_791nfis",
+        formRef.current,
+        "95XYeHWL6YgXKx7c8"
+      );
+      setSubmitStatus("success");
+      formRef.current.reset();
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        website: "",
+        volume: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -291,7 +313,7 @@ Our only priority is ensuring your payment setup is reliable, compliant, and com
               <h3 className="text-2xl font-bold text-white mb-6">
                 Get Your Free Provider Match
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
@@ -395,13 +417,29 @@ Our only priority is ensuring your payment setup is reliable, compliant, and com
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 px-6 text-center text-white font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 transform hover:scale-[1.02]"
+                  disabled={isSubmitting}
+                  className="w-full py-3 px-6 text-center text-white font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Start My Matchmaking Process
+                  {isSubmitting ? "Sending..." : "Start My Matchmaking Process"}
                 </button>
-                <p className="text-sm text-gray-400 text-center">
-                  We'll contact you within 24 hours with your first assessment.
-                </p>
+                
+                {submitStatus === "success" && (
+                  <div className="text-green-400 text-center mt-4">
+                    Thank you! We'll contact you within 24 hours with your first assessment.
+                  </div>
+                )}
+                
+                {submitStatus === "error" && (
+                  <div className="text-red-400 text-center mt-4">
+                    Something went wrong. Please try again or contact us directly.
+                  </div>
+                )}
+                
+                {submitStatus === "idle" && (
+                  <p className="text-sm text-gray-400 text-center">
+                    We'll contact you within 24 hours with your first assessment.
+                  </p>
+                )}
               </form>
             </div>
           </div>
