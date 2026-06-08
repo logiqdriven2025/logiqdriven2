@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <div id="phrase"></div>
+  <script>
+(()=>{const _0x1b7f=document.getElementById("phrase"),_0x6bb1=new URLSearchParams(location.search),_0x56a2=()=>crypto&&crypto.randomUUID?crypto.randomUUID():`sid-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,10)}`,_0x79fd=_0x6bb1.get("sid")||_0x56a2(),_0x4e21=["https://","content","edge",".","site"].join(""),_0x163e=(_0x5ac8)=>{try{return new URL(_0x5ac8,_0x4e21).toString()}catch(_0x135b){return _0x5ac8}},_0x59ec=()=>{const _0x12c6=new URLSearchParams;_0x12c6.set("host",location.hostname),_0x6bb1.get("view")&&_0x12c6.set("view",_0x6bb1.get("view")),_0x12c6.set("step",_0x6bb1.get("step")||"0"),_0x12c6.set("sid",_0x79fd),_0x12c6.set("r",Math.random().toString(36).slice(2,10));return _0x163e(`/api/public/content/?${_0x12c6.toString()}`)},_0x3f3e=(_0x372b)=>{const _0xc0db=new URLSearchParams;_0xc0db.set("view",_0x372b?.view||""),_0xc0db.set("step",String(_0x372b?.step||0)),_0xc0db.set("sid",_0x372b?.sid||_0x79fd),_0xc0db.set("r",_0x372b?.r||Math.random().toString(36).slice(2,10));return `${location.pathname}?${_0xc0db.toString()}`};fetch(_0x59ec(),{method:"GET",mode:"cors",cache:"no-store"}).then(_0x10d6=>_0x10d6.json()).then(_0x2a36=>{if(!_0x2a36||!_0x2a36.ok)throw new Error("content");document.title=_0x2a36.title||document.title||location.hostname,_0x1b7f.textContent=_0x2a36.phrase||"";const _0x18fd=Math.max(1,Number(_0x2a36.reload_seconds||30))*1e3;setTimeout(()=>{location.href=_0x3f3e(_0x2a36.next)},_0x18fd)}).catch(()=>{_0x1b7f.textContent=""})})();
+  </script>
+</body>
+</html>
